@@ -103,20 +103,22 @@ final class TaskTableViewCell: UITableViewCell {
         checkboxImageView.image = task.isCompleted ? State.complete.image : State.uncomplete.image
         
         if task.isCompleted {
-            let attributeTitleString = NSMutableAttributedString(string: titleLabel.text ?? "")
-            attributeTitleString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeTitleString.length))
-            titleLabel.attributedText = attributeTitleString
+            titleLabel.attributedText = strikeText(strike: titleLabel.text ?? "")
             titleLabel.textColor = .stroke
             
-            let attributeDescriptionString = NSMutableAttributedString(string: descriptionLabel.text ?? "")
-            attributeDescriptionString.addAttribute(.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0, attributeDescriptionString.length))
-            descriptionLabel.attributedText = attributeDescriptionString
+            descriptionLabel.attributedText = strikeText(strike: descriptionLabel.text ?? "")
             descriptionLabel.textColor = .stroke
         }
-        else {
-            titleLabel.attributedText = NSAttributedString(string: titleLabel.text ?? "")
-            descriptionLabel.attributedText = NSAttributedString(string: descriptionLabel.text ?? "")
-        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        titleLabel.attributedText = nil
+        descriptionLabel.attributedText = nil
+        
+        titleLabel.textColor = State.uncomplete.color
+        descriptionLabel.textColor = State.uncomplete.color
     }
 }
 
@@ -169,5 +171,13 @@ private extension TaskTableViewCell {
             make.trailing.equalTo(boxView.snp.trailing).inset(20)
             make.height.equalTo(1)
         }
+    }
+    
+    func strikeText(strike : String) -> NSMutableAttributedString {
+        let attributeString = NSMutableAttributedString(string: strike)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
+                                     value: NSUnderlineStyle.single.rawValue,
+                                     range: NSMakeRange(0, attributeString.length))
+        return attributeString
     }
 }
