@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD22F6562CE74C2B004CD8FA /* AllTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F6552CE74C2B004CD8FA /* AllTasks.swift */; };
+		CD22F6582CE74C55004CD8FA /* TaskObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F6572CE74C55004CD8FA /* TaskObject.swift */; };
+		CD22F65A2CE74F9E004CD8FA /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F6592CE74F9E004CD8FA /* TableViewSection.swift */; };
+		CD22F65C2CE750B3004CD8FA /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F65B2CE750B3004CD8FA /* ApiManager.swift */; };
+		CD22F65E2CE750D0004CD8FA /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F65D2CE750D0004CD8FA /* NetworkingError.swift */; };
+		CD42FBE52CE66FCB00A78A1C /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42FBE42CE66FCB00A78A1C /* UIView+Ex.swift */; };
 		CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00072CE660680015BCC1 /* AppDelegate.swift */; };
 		CDFD000C2CE660680015BCC1 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */; };
 		CDFD00112CE6606A0015BCC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDFD00102CE6606A0015BCC1 /* Assets.xcassets */; };
 		CDFD00142CE6606A0015BCC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDFD00122CE6606A0015BCC1 /* LaunchScreen.storyboard */; };
 		CDFD001D2CE6613D0015BCC1 /* TasksListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD001C2CE6613D0015BCC1 /* TasksListViewModel.swift */; };
+		CDFD00222CE663E70015BCC1 /* UIColor+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00212CE663E70015BCC1 /* UIColor+Ex.swift */; };
+		CDFD00252CE667FA0015BCC1 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00242CE667FA0015BCC1 /* String+Ex.swift */; };
+		CDFD00272CE66A280015BCC1 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00262CE66A280015BCC1 /* TaskTableViewCell.swift */; };
+		CDFD002A2CE66BBF0015BCC1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CDFD00292CE66BBF0015BCC1 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD22F6552CE74C2B004CD8FA /* AllTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasks.swift; sourceTree = "<group>"; };
+		CD22F6572CE74C55004CD8FA /* TaskObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskObject.swift; sourceTree = "<group>"; };
+		CD22F6592CE74F9E004CD8FA /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
+		CD22F65B2CE750B3004CD8FA /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		CD22F65D2CE750D0004CD8FA /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
+		CD42FBE42CE66FCB00A78A1C /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
 		CDFD00042CE660680015BCC1 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD00072CE660680015BCC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +38,9 @@
 		CDFD00132CE6606A0015BCC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDFD00152CE6606A0015BCC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CDFD001C2CE6613D0015BCC1 /* TasksListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewModel.swift; sourceTree = "<group>"; };
+		CDFD00212CE663E70015BCC1 /* UIColor+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ex.swift"; sourceTree = "<group>"; };
+		CDFD00242CE667FA0015BCC1 /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
+		CDFD00262CE66A280015BCC1 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,12 +48,49 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDFD002A2CE66BBF0015BCC1 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD22F65F2CE7510B004CD8FA /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CD22F65B2CE750B3004CD8FA /* ApiManager.swift */,
+				CD22F65D2CE750D0004CD8FA /* NetworkingError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		CDA9A8F72CE7908C000154AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */,
+				CDFD00262CE66A280015BCC1 /* TaskTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CDA9A8F82CE7909D000154AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD22F6552CE74C2B004CD8FA /* AllTasks.swift */,
+				CD22F6572CE74C55004CD8FA /* TaskObject.swift */,
+				CD22F6592CE74F9E004CD8FA /* TableViewSection.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CDA9A8F92CE790AD000154AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CDFD001C2CE6613D0015BCC1 /* TasksListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CDFD00052CE660680015BCC1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -57,17 +113,30 @@
 		CDFD001F2CE6628E0015BCC1 /* Tasks List */ = {
 			isa = PBXGroup;
 			children = (
-				CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */,
-				CDFD001C2CE6613D0015BCC1 /* TasksListViewModel.swift */,
+				CDA9A8F82CE7909D000154AF /* Model */,
+				CDA9A8F72CE7908C000154AF /* View */,
+				CDA9A8F92CE790AD000154AF /* ViewModel */,
 			);
 			path = "Tasks List";
+			sourceTree = "<group>";
+		};
+		CDFD00232CE667740015BCC1 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				CDFD00212CE663E70015BCC1 /* UIColor+Ex.swift */,
+				CD42FBE42CE66FCB00A78A1C /* UIView+Ex.swift */,
+				CDFD00242CE667FA0015BCC1 /* String+Ex.swift */,
+			);
+			path = Extentions;
 			sourceTree = "<group>";
 		};
 		CDFDFFFB2CE660680015BCC1 = {
 			isa = PBXGroup;
 			children = (
 				CDFD001F2CE6628E0015BCC1 /* Tasks List */,
+				CD22F65F2CE7510B004CD8FA /* Networking */,
 				CDFD001E2CE662810015BCC1 /* Resourses */,
+				CDFD00232CE667740015BCC1 /* Extentions */,
 				CDFD00052CE660680015BCC1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -89,6 +158,7 @@
 			);
 			name = ToDoList;
 			packageProductDependencies = (
+				CDFD00292CE66BBF0015BCC1 /* SnapKit */,
 			);
 			productName = ToDoList;
 			productReference = CDFD00042CE660680015BCC1 /* ToDoList.app */;
@@ -118,6 +188,9 @@
 			);
 			mainGroup = CDFDFFFB2CE660680015BCC1;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CDFD00282CE66BBF0015BCC1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CDFD00052CE660680015BCC1 /* Products */;
 			projectDirPath = "";
@@ -145,9 +218,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD22F6562CE74C2B004CD8FA /* AllTasks.swift in Sources */,
 				CDFD000C2CE660680015BCC1 /* TasksListViewController.swift in Sources */,
+				CD22F6582CE74C55004CD8FA /* TaskObject.swift in Sources */,
+				CD22F65A2CE74F9E004CD8FA /* TableViewSection.swift in Sources */,
+				CDFD00252CE667FA0015BCC1 /* String+Ex.swift in Sources */,
+				CDFD00272CE66A280015BCC1 /* TaskTableViewCell.swift in Sources */,
+				CD22F65C2CE750B3004CD8FA /* ApiManager.swift in Sources */,
+				CDFD00222CE663E70015BCC1 /* UIColor+Ex.swift in Sources */,
 				CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */,
 				CDFD001D2CE6613D0015BCC1 /* TasksListViewModel.swift in Sources */,
+				CD22F65E2CE750D0004CD8FA /* NetworkingError.swift in Sources */,
+				CD42FBE52CE66FCB00A78A1C /* UIView+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +442,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CDFD00282CE66BBF0015BCC1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CDFD00292CE66BBF0015BCC1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CDFD00282CE66BBF0015BCC1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CDFDFFFC2CE660680015BCC1 /* Project object */;
 }
