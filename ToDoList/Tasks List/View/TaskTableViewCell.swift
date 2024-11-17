@@ -95,7 +95,7 @@ final class TaskTableViewCell: UITableViewCell {
     // MARK: - Public Methods
     func configure(with task: TaskObject) {
         titleLabel.text = task.toDo
-        descriptionLabel.text = task.toDo
+        descriptionLabel.text = task.toDoDescription ?? task.toDo
         
         dateFormatter.dateFormat = "dd/MM/yy"
         dateLabel.text = dateFormatter.string(from: task.date ?? Date())

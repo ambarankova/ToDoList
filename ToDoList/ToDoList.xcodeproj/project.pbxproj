@@ -13,6 +13,10 @@
 		CD22F65C2CE750B3004CD8FA /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F65B2CE750B3004CD8FA /* ApiManager.swift */; };
 		CD22F65E2CE750D0004CD8FA /* NetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F65D2CE750D0004CD8FA /* NetworkingError.swift */; };
 		CD42FBE52CE66FCB00A78A1C /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42FBE42CE66FCB00A78A1C /* UIView+Ex.swift */; };
+		CD7E839E2CEA38DF00ADFB67 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CD7E839C2CEA38DF00ADFB67 /* Model.xcdatamodeld */; };
+		CD7E83A52CEA3AE900ADFB67 /* TaskPersistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83A42CEA3AE900ADFB67 /* TaskPersistant.swift */; };
+		CD7E83AA2CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83A82CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift */; };
+		CD7E83AB2CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83A92CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift */; };
 		CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00072CE660680015BCC1 /* AppDelegate.swift */; };
 		CDFD000C2CE660680015BCC1 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */; };
 		CDFD00112CE6606A0015BCC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDFD00102CE6606A0015BCC1 /* Assets.xcassets */; };
@@ -31,6 +35,10 @@
 		CD22F65B2CE750B3004CD8FA /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		CD22F65D2CE750D0004CD8FA /* NetworkingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingError.swift; sourceTree = "<group>"; };
 		CD42FBE42CE66FCB00A78A1C /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		CD7E839D2CEA38DF00ADFB67 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		CD7E83A42CEA3AE900ADFB67 /* TaskPersistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPersistant.swift; sourceTree = "<group>"; };
+		CD7E83A82CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CD7E83A92CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CDFD00042CE660680015BCC1 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD00072CE660680015BCC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +70,17 @@
 				CD22F65D2CE750D0004CD8FA /* NetworkingError.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		CD7E83A32CEA3AC900ADFB67 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CD7E839C2CEA38DF00ADFB67 /* Model.xcdatamodeld */,
+				CD7E83A82CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift */,
+				CD7E83A92CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift */,
+				CD7E83A42CEA3AE900ADFB67 /* TaskPersistant.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		CDA9A8F72CE7908C000154AF /* View */ = {
@@ -134,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				CDFD001F2CE6628E0015BCC1 /* Tasks List */,
+				CD7E83A32CEA3AC900ADFB67 /* CoreData */,
 				CD22F65F2CE7510B004CD8FA /* Networking */,
 				CDFD001E2CE662810015BCC1 /* Resourses */,
 				CDFD00232CE667740015BCC1 /* Extentions */,
@@ -229,7 +249,11 @@
 				CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */,
 				CDFD001D2CE6613D0015BCC1 /* TasksListViewModel.swift in Sources */,
 				CD22F65E2CE750D0004CD8FA /* NetworkingError.swift in Sources */,
+				CD7E839E2CEA38DF00ADFB67 /* Model.xcdatamodeld in Sources */,
 				CD42FBE52CE66FCB00A78A1C /* UIView+Ex.swift in Sources */,
+				CD7E83A52CEA3AE900ADFB67 /* TaskPersistant.swift in Sources */,
+				CD7E83AA2CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift in Sources */,
+				CD7E83AB2CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +485,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		CD7E839C2CEA38DF00ADFB67 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CD7E839D2CEA38DF00ADFB67 /* Model.xcdatamodel */,
+			);
+			currentVersion = CD7E839D2CEA38DF00ADFB67 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CDFDFFFC2CE660680015BCC1 /* Project object */;
 }

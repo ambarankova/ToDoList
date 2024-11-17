@@ -12,6 +12,7 @@ protocol TasksListViewModelProtocol {
     var reloadData: (() -> Void)? { get set }
     
     func loadData()
+    func getTasks()
 }
 
 final class TasksListViewModel: TasksListViewModelProtocol {
@@ -32,6 +33,10 @@ final class TasksListViewModel: TasksListViewModelProtocol {
             self?.handleResult(result)
         }
     }
+    
+    func getTasks() {
+        let tasks = TaskPersistant.fetchAll()
+    }
 }
 
 // MARK: - Private
@@ -40,7 +45,7 @@ private extension TasksListViewModel {
         switch result {
         case .success(let tasks):
             self.convertToCell(tasks)
-//            self.saveToPersistant(tasks)
+            self.saveToPersistant(tasks)
         case .failure(let error):
             DispatchQueue.main.async {
                 self.showError?(error.localizedDescription)
@@ -55,6 +60,12 @@ private extension TasksListViewModel {
             print(sections)
         } else {
             sections[0].items += tasks
+        }
+    }
+    
+    func saveToPersistant(_ tasks: [TaskObject]) {
+        for task in tasks {
+            TaskPersistant.save(task)
         }
     }
 }

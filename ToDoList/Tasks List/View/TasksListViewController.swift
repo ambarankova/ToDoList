@@ -134,11 +134,20 @@ extension TasksListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension TasksListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if var task = viewModel.sections[indexPath.section].items[indexPath.row] as? TaskObject {
-//            task.isCompleted.toggle()
-//            viewModel.sections[indexPath.section].items[indexPath.row] = task
+        if var task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject  {
+            
+            // Изменяем статус задачи
+            task.isCompleted.toggle()
+            
+            // Сохраняем изменения обратно в массив
+            viewModel?.sections[indexPath.section].items[indexPath.row] = task
+            
+            // Обновляем таблицу
 //            tableView.reloadRows(at: [indexPath], with: .automatic)
-//        }
+            viewModel?.reloadData = { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
     }
 }
 

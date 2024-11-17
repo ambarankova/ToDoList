@@ -14,6 +14,7 @@ struct TaskObject: Decodable, TableViewItemsProtocol {
     let userId: Int
     
     var date: Date?
+    var toDoDescription: String?
     
     enum CodingKeys: String, CodingKey {
         case id
