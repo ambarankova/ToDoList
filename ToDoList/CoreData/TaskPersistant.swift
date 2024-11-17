@@ -14,21 +14,41 @@ final class TaskPersistant {
     static func save(_ task: TaskObject) {
         var entity: TaskListEntity?
         
-        if let ent = getEntity(for: task) {
-            entity = ent
-        } else {
-            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else { return }
-            entity = TaskListEntity(entity: description,
-                                    insertInto: context)
-        }
+        //        if let ent = getEntity(for: task) {
+        //            entity = ent
+        //        } else {
+        //            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else { return }
+        //            entity = TaskListEntity(entity: description,
+        //                                    insertInto: context)
+        //        }
+        //
+        //        entity?.id = Int64(task.id)
+        //        entity?.toDo = task.toDo
+        //        entity?.isCompleted = task.isCompleted
+        //        entity?.userId = Int64(task.userId)
+        //
+        //        saveContext()
+        //    }
         
-        entity?.id = Int64(task.id)
-        entity?.toDo = task.toDo
-        entity?.isCompleted = task.isCompleted
-        entity?.userId = Int64(task.userId)
+        if let entity = getEntity(for: task) {
+            // Если сущность существует, обновляем её
+            entity.id = Int64(task.id)
+            entity.toDo = task.toDo
+            entity.isCompleted = task.isCompleted
+            entity.userId = Int64(task.userId)
+        } else {
+            // Если сущности с таким id нет, создаем новую
+            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else { return }
+            let newEntity = TaskListEntity(entity: description, insertInto: context)
+            newEntity.id = Int64(task.id)
+            newEntity.toDo = task.toDo
+            newEntity.isCompleted = task.isCompleted
+            newEntity.userId = Int64(task.userId)
+        }
         
         saveContext()
     }
+    
     
     static func delete(_ task: TaskObject) {
         guard let entity = getEntity(for: task) else { return }
@@ -65,7 +85,7 @@ final class TaskPersistant {
     
     private static func getEntity(for task: TaskObject) -> TaskListEntity? {
         let request = TaskListEntity.fetchRequest()
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "id == %d", task.id)
         request.predicate = predicate
         
         do {

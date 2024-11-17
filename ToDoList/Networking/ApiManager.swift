@@ -27,6 +27,9 @@ final class ApiManager {
             do {
                 let model = try JSONDecoder().decode(AllTasksObjects.self,
                                                      from: data)
+                for toDo in model.todos {
+                    TaskPersistant.save(toDo)
+                }
                 completion(.success(model.todos))
             }
             catch let decodeError {

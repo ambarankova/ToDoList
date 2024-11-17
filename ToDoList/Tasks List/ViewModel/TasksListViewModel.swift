@@ -12,7 +12,8 @@ protocol TasksListViewModelProtocol {
     var reloadData: (() -> Void)? { get set }
     
     func loadData()
-    func getTasks()
+    func getTasks() -> [TaskObject]
+    func delete(_ task: TaskObject)
 }
 
 final class TasksListViewModel: TasksListViewModelProtocol {
@@ -34,8 +35,12 @@ final class TasksListViewModel: TasksListViewModelProtocol {
         }
     }
     
-    func getTasks() {
-        let tasks = TaskPersistant.fetchAll()
+    func getTasks() -> [TaskObject] {
+        return TaskPersistant.fetchAll()
+    }
+    
+    func delete(_ task: TaskObject) {
+        TaskPersistant.delete(task)
     }
 }
 
@@ -45,7 +50,6 @@ private extension TasksListViewModel {
         switch result {
         case .success(let tasks):
             self.convertToCell(tasks)
-            self.saveToPersistant(tasks)
         case .failure(let error):
             DispatchQueue.main.async {
                 self.showError?(error.localizedDescription)
@@ -57,7 +61,6 @@ private extension TasksListViewModel {
         if sections.isEmpty {
             let firstSection = TableViewSection(items: tasks)
             sections = [firstSection]
-            print(sections)
         } else {
             sections[0].items += tasks
         }

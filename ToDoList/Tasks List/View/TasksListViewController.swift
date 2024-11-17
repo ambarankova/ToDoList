@@ -32,7 +32,8 @@ final class TasksListViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: TasksListViewModelProtocol?
-    var count = 0
+    var dimmingView: UIView?
+    var countOfTasks = 0
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -73,6 +74,7 @@ private extension TasksListViewController {
         tasksCount()
         setupConstraints()
         setupBars()
+        setupContextMenu()
     }
     
     func setupConstraints() {
@@ -112,7 +114,7 @@ private extension TasksListViewController {
     }
     
     func setupBars() {
-        let countLabel = UIBarButtonItem(title: "\(count) tasks".localized,
+        let countLabel = UIBarButtonItem(title: "\(countOfTasks) tasks".localized,
                                          image: nil,
                                          target: self,
                                          action: nil)
@@ -130,22 +132,46 @@ private extension TasksListViewController {
         navigationController?.toolbar.tintColor = .softWhite
     }
     
-    func tasksCount() {
-        guard let VM = viewModel else { return }
-        
-        for section in VM.sections {
-            count += section.items.count
-        }
+    func setupContextMenu() {
+        let interaction = UIContextMenuInteraction(delegate: self)
+        tableView.addInteraction(interaction)
     }
     
-    @objc private func addTask() {
+    func tasksCount() {
+        guard let VM = viewModel else { return }
+        let allTasks = VM.getTasks()
+        countOfTasks = allTasks.count
+    }
+    
+    func createContextMenu(for task: TaskObject) -> UIMenu {
+            let editAction = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+                self.editTask()
+            }
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                print("Shared my task!")
+            }
+            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { _ in
+                self.viewModel?.delete(task)
+            }
+
+            return UIMenu(title: "", children: [editAction, shareAction, deleteAction])
+        }
+    
+    func editTask() {
+        let editTaskViewController = EditTaskViewController()
+        let viewModel = EditTaskViewModel()
+        editTaskViewController.viewModel = viewModel
+        navigationController?.pushViewController(editTaskViewController, animated: true)
+    }
+    
+    @objc func addTask() {
         let newTaskViewController = NewTaskViewController()
         let viewModel = NewTaskViewModel()
         newTaskViewController.viewModel = viewModel
         navigationController?.pushViewController(newTaskViewController, animated: true)
     }
     
-    @objc private func hideKeyboard() {
+    @objc func hideKeyboard() {
         searchBar.resignFirstResponder()
     }
 }
@@ -176,6 +202,74 @@ extension TasksListViewController: UITableViewDelegate {
             TaskPersistant.save(task)
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
+    }
+}
+
+extension TasksListViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+            guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+            let task = viewModel?.sections[indexPath.section].items[indexPath.row] // Достаем задачу по индексу
+
+            // Создаём меню с действиями
+            let editAction = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+                // Действие для редактирования
+                print("Edit task")
+            }
+            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                // Действие для поделиться
+                print("Share task")
+            }
+            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { _ in
+                // Действие для удаления
+                print("Delete task")
+            }
+            
+            let menu = UIMenu(title: "", children: [editAction, shareAction, deleteAction])
+            
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
+                return menu
+            })
+        }
+
+//    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+//        guard let indexPath = tableView.indexPathForRow(at: location),
+//              let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject else { return nil }
+//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
+//            return self.createContextMenu(for: task)
+//        })
+//    }
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+            guard let selectedCell = interaction.view as? UITableViewCell else { return }
+            
+            // Увеличиваем ячейку при сильном нажатии
+            UIView.animate(withDuration: 0.3) {
+                selectedCell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }
+            
+            // Затемняем фон при сильном нажатии
+            showDimmedBackground()
+        }
+
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, didEndMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+        guard let selectedCell = interaction.view as? UITableViewCell else { return }
+
+        UIView.animate(withDuration: 0.3) {
+            selectedCell.transform = CGAffineTransform.identity
+        }
+
+        removeDimmedBackground()
+    }
+
+    func showDimmedBackground() {
+        dimmingView = UIView(frame: view.bounds)
+        dimmingView?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.addSubview(dimmingView!)
+    }
+
+    func removeDimmedBackground() {
+        dimmingView?.removeFromSuperview()
+        dimmingView = nil
     }
 }
 
