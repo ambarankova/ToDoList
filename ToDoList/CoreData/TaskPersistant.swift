@@ -17,8 +17,7 @@ final class TaskPersistant {
         if let ent = getEntity(for: task) {
             entity = ent
         } else {
-            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity",
-                                                               in: context) else { return }
+            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else { return }
             entity = TaskListEntity(entity: description,
                                     insertInto: context)
         }

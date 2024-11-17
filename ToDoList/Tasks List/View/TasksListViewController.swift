@@ -32,6 +32,7 @@ final class TasksListViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: TasksListViewModelProtocol?
+    var count = 0
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -69,7 +70,9 @@ private extension TasksListViewController {
                                                 action: #selector(hideKeyboard))
         view.addGestureRecognizer(recognizer)
         
+        tasksCount()
         setupConstraints()
+        setupBars()
     }
     
     func setupConstraints() {
@@ -108,6 +111,40 @@ private extension TasksListViewController {
         }
     }
     
+    func setupBars() {
+        let countLabel = UIBarButtonItem(title: "\(count) tasks".localized,
+                                         image: nil,
+                                         target: self,
+                                         action: nil)
+        
+        let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil")?.withTintColor(.brightYellow, renderingMode: .alwaysOriginal),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(addTask))
+        
+        let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
+        
+        setToolbarItems([spacing, countLabel, spacing, newTaskButton], animated: true)
+        navigationController?.isToolbarHidden = false
+        navigationController?.toolbar.barTintColor = .stroke
+        navigationController?.toolbar.tintColor = .softWhite
+    }
+    
+    func tasksCount() {
+        guard let VM = viewModel else { return }
+        
+        for section in VM.sections {
+            count += section.items.count
+        }
+    }
+    
+    @objc private func addTask() {
+        let newTaskViewController = NewTaskViewController()
+        let viewModel = NewTaskViewModel()
+        newTaskViewController.viewModel = viewModel
+        navigationController?.pushViewController(newTaskViewController, animated: true)
+    }
+    
     @objc private func hideKeyboard() {
         searchBar.resignFirstResponder()
     }
@@ -135,18 +172,9 @@ extension TasksListViewController: UITableViewDataSource {
 extension TasksListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if var task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject  {
-            
-            // Изменяем статус задачи
             task.isCompleted.toggle()
-            
-            // Сохраняем изменения обратно в массив
-            viewModel?.sections[indexPath.section].items[indexPath.row] = task
-            
-            // Обновляем таблицу
-//            tableView.reloadRows(at: [indexPath], with: .automatic)
-            viewModel?.reloadData = { [weak self] in
-                self?.tableView.reloadData()
-            }
+            TaskPersistant.save(task)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
 }
