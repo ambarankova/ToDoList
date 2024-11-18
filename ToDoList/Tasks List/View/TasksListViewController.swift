@@ -44,6 +44,7 @@ final class TasksListViewController: UIViewController {
         setupViewModel()
         
         viewModel?.loadData()
+        viewModel?.setupSection()
     }
 }
 
@@ -143,20 +144,6 @@ private extension TasksListViewController {
         countOfTasks = allTasks.count
     }
     
-    func createContextMenu(for task: TaskObject) -> UIMenu {
-            let editAction = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
-                self.editTask()
-            }
-            let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                print("Shared my task!")
-            }
-            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { _ in
-                self.viewModel?.delete(task)
-            }
-
-            return UIMenu(title: "", children: [editAction, shareAction, deleteAction])
-        }
-    
     func editTask() {
         let editTaskViewController = EditTaskViewController()
         let viewModel = EditTaskViewModel()
@@ -197,31 +184,31 @@ extension TasksListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension TasksListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if var task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject  {
-            task.isCompleted.toggle()
-            TaskPersistant.save(task)
-            tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
+//        if var task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject  {
+//            task.isCompleted.toggle()
+//            TaskPersistant.save(task)
+//            tableView.reloadRows(at: [indexPath], with: .automatic)
+//        } else {
+//            print("no")
+//        }
+        print("Row selected at \(indexPath.row)")
     }
 }
 
+// MARK: - UIContextMenuInteractionDelegate
 extension TasksListViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-            guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-            let task = viewModel?.sections[indexPath.section].items[indexPath.row] // Достаем задачу по индексу
+            guard let indexPath = tableView.indexPathForRow(at: location),
+                  let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject else { return nil }
 
-            // Создаём меню с действиями
             let editAction = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
-                // Действие для редактирования
-                print("Edit task")
+                self.editTask()
             }
             let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
-                // Действие для поделиться
                 print("Share task")
             }
             let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { _ in
-                // Действие для удаления
-                print("Delete task")
+                self.viewModel?.delete(task)
             }
             
             let menu = UIMenu(title: "", children: [editAction, shareAction, deleteAction])
@@ -230,24 +217,13 @@ extension TasksListViewController: UIContextMenuInteractionDelegate {
                 return menu
             })
         }
-
-//    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-//        guard let indexPath = tableView.indexPathForRow(at: location),
-//              let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject else { return nil }
-//        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil, actionProvider: { _ in
-//            return self.createContextMenu(for: task)
-//        })
-//    }
     
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
+    private func contextMenuInteraction(_ interaction: UIContextMenuInteraction, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
             guard let selectedCell = interaction.view as? UITableViewCell else { return }
-            
-            // Увеличиваем ячейку при сильном нажатии
+
             UIView.animate(withDuration: 0.3) {
                 selectedCell.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             }
-            
-            // Затемняем фон при сильном нажатии
             showDimmedBackground()
         }
 
@@ -257,7 +233,6 @@ extension TasksListViewController: UIContextMenuInteractionDelegate {
         UIView.animate(withDuration: 0.3) {
             selectedCell.transform = CGAffineTransform.identity
         }
-
         removeDimmedBackground()
     }
 
