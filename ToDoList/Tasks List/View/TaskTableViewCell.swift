@@ -93,7 +93,7 @@ final class TaskTableViewCell: UITableViewCell {
     }
     
     // MARK: - Public Methods
-    func configure(with task: TaskObject) {
+    func configure(with task: UserTask) {
         titleLabel.text = task.toDo
         descriptionLabel.text = task.toDoDescription ?? task.toDo
         

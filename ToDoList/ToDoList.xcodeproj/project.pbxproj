@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD1497252CEBB6CE00AE9CCF /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1497242CEBB6CE00AE9CCF /* UserTask.swift */; };
 		CD22F6562CE74C2B004CD8FA /* AllTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F6552CE74C2B004CD8FA /* AllTasks.swift */; };
 		CD22F6582CE74C55004CD8FA /* TaskObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F6572CE74C55004CD8FA /* TaskObject.swift */; };
 		CD22F65A2CE74F9E004CD8FA /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD22F6592CE74F9E004CD8FA /* TableViewSection.swift */; };
@@ -17,10 +18,8 @@
 		CD7E83A52CEA3AE900ADFB67 /* TaskPersistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83A42CEA3AE900ADFB67 /* TaskPersistant.swift */; };
 		CD7E83AA2CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83A82CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift */; };
 		CD7E83AB2CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83A92CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift */; };
-		CD7E83AD2CEA442A00ADFB67 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83AC2CEA442A00ADFB67 /* NewTaskViewController.swift */; };
+		CD7E83AD2CEA442A00ADFB67 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83AC2CEA442A00ADFB67 /* TaskViewController.swift */; };
 		CD7E83AF2CEA444000ADFB67 /* NewTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83AE2CEA444000ADFB67 /* NewTaskViewModel.swift */; };
-		CD7E83B12CEA4C1200ADFB67 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83B02CEA4C1200ADFB67 /* EditTaskViewController.swift */; };
-		CD7E83B32CEA4C3000ADFB67 /* EditTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83B22CEA4C3000ADFB67 /* EditTaskViewModel.swift */; };
 		CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00072CE660680015BCC1 /* AppDelegate.swift */; };
 		CDFD000C2CE660680015BCC1 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */; };
 		CDFD00112CE6606A0015BCC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDFD00102CE6606A0015BCC1 /* Assets.xcassets */; };
@@ -33,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD1497242CEBB6CE00AE9CCF /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
 		CD22F6552CE74C2B004CD8FA /* AllTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasks.swift; sourceTree = "<group>"; };
 		CD22F6572CE74C55004CD8FA /* TaskObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskObject.swift; sourceTree = "<group>"; };
 		CD22F6592CE74F9E004CD8FA /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
@@ -43,10 +43,8 @@
 		CD7E83A42CEA3AE900ADFB67 /* TaskPersistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPersistant.swift; sourceTree = "<group>"; };
 		CD7E83A82CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CD7E83A92CEA3ED400ADFB67 /* TaskListEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskListEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CD7E83AC2CEA442A00ADFB67 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		CD7E83AC2CEA442A00ADFB67 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		CD7E83AE2CEA444000ADFB67 /* NewTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewModel.swift; sourceTree = "<group>"; };
-		CD7E83B02CEA4C1200ADFB67 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
-		CD7E83B22CEA4C3000ADFB67 /* EditTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewModel.swift; sourceTree = "<group>"; };
 		CDFD00042CE660680015BCC1 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD00072CE660680015BCC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +69,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD1497262CEBBF3000AE9CCF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD22F6552CE74C2B004CD8FA /* AllTasks.swift */,
+				CD22F6572CE74C55004CD8FA /* TaskObject.swift */,
+				CD1497242CEBB6CE00AE9CCF /* UserTask.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD1497272CEBBF5400AE9CCF /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				CD1497282CEBBF6600AE9CCF /* ViewController */,
+				CD1497292CEBBF6F00AE9CCF /* ViewModel */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		CD1497282CEBBF6600AE9CCF /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				CD7E83AC2CEA442A00ADFB67 /* TaskViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		CD1497292CEBBF6F00AE9CCF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CD7E83AE2CEA444000ADFB67 /* NewTaskViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CD22F65F2CE7510B004CD8FA /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +136,6 @@
 		CDA9A8F82CE7909D000154AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CD22F6552CE74C2B004CD8FA /* AllTasks.swift */,
-				CD22F6572CE74C55004CD8FA /* TaskObject.swift */,
 				CD22F6592CE74F9E004CD8FA /* TableViewSection.swift */,
 			);
 			path = Model;
@@ -143,10 +174,6 @@
 				CDA9A8F82CE7909D000154AF /* Model */,
 				CDA9A8F72CE7908C000154AF /* View */,
 				CDA9A8F92CE790AD000154AF /* ViewModel */,
-				CD7E83AC2CEA442A00ADFB67 /* NewTaskViewController.swift */,
-				CD7E83AE2CEA444000ADFB67 /* NewTaskViewModel.swift */,
-				CD7E83B22CEA4C3000ADFB67 /* EditTaskViewModel.swift */,
-				CD7E83B02CEA4C1200ADFB67 /* EditTaskViewController.swift */,
 			);
 			path = "Tasks List";
 			sourceTree = "<group>";
@@ -164,7 +191,9 @@
 		CDFDFFFB2CE660680015BCC1 = {
 			isa = PBXGroup;
 			children = (
+				CD1497262CEBBF3000AE9CCF /* Model */,
 				CDFD001F2CE6628E0015BCC1 /* Tasks List */,
+				CD1497272CEBBF5400AE9CCF /* Task */,
 				CD7E83A32CEA3AC900ADFB67 /* CoreData */,
 				CD22F65F2CE7510B004CD8FA /* Networking */,
 				CDFD001E2CE662810015BCC1 /* Resourses */,
@@ -253,19 +282,18 @@
 				CD22F6562CE74C2B004CD8FA /* AllTasks.swift in Sources */,
 				CDFD000C2CE660680015BCC1 /* TasksListViewController.swift in Sources */,
 				CD22F6582CE74C55004CD8FA /* TaskObject.swift in Sources */,
+				CD1497252CEBB6CE00AE9CCF /* UserTask.swift in Sources */,
 				CD22F65A2CE74F9E004CD8FA /* TableViewSection.swift in Sources */,
 				CDFD00252CE667FA0015BCC1 /* String+Ex.swift in Sources */,
 				CDFD00272CE66A280015BCC1 /* TaskTableViewCell.swift in Sources */,
 				CD22F65C2CE750B3004CD8FA /* ApiManager.swift in Sources */,
 				CDFD00222CE663E70015BCC1 /* UIColor+Ex.swift in Sources */,
 				CD7E83AF2CEA444000ADFB67 /* NewTaskViewModel.swift in Sources */,
-				CD7E83AD2CEA442A00ADFB67 /* NewTaskViewController.swift in Sources */,
+				CD7E83AD2CEA442A00ADFB67 /* TaskViewController.swift in Sources */,
 				CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */,
-				CD7E83B32CEA4C3000ADFB67 /* EditTaskViewModel.swift in Sources */,
 				CDFD001D2CE6613D0015BCC1 /* TasksListViewModel.swift in Sources */,
 				CD22F65E2CE750D0004CD8FA /* NetworkingError.swift in Sources */,
 				CD7E839E2CEA38DF00ADFB67 /* Model.xcdatamodeld in Sources */,
-				CD7E83B12CEA4C1200ADFB67 /* EditTaskViewController.swift in Sources */,
 				CD42FBE52CE66FCB00A78A1C /* UIView+Ex.swift in Sources */,
 				CD7E83A52CEA3AE900ADFB67 /* TaskPersistant.swift in Sources */,
 				CD7E83AA2CEA3ED400ADFB67 /* TaskListEntity+CoreDataClass.swift in Sources */,

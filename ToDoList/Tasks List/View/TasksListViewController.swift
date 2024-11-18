@@ -144,16 +144,17 @@ private extension TasksListViewController {
         countOfTasks = allTasks.count
     }
     
-    func editTask() {
-        let editTaskViewController = EditTaskViewController()
-        let viewModel = EditTaskViewModel()
+    func editTask(task: UserTask) {
+        let editTaskViewController = TaskViewController()
+        let viewModel = NewTaskViewModel(task: task)
+//        editTaskViewController.set(task: task)
         editTaskViewController.viewModel = viewModel
         navigationController?.pushViewController(editTaskViewController, animated: true)
     }
     
     @objc func addTask() {
-        let newTaskViewController = NewTaskViewController()
-        let viewModel = NewTaskViewModel()
+        let newTaskViewController = TaskViewController()
+        let viewModel = NewTaskViewModel(task: nil)
         newTaskViewController.viewModel = viewModel
         navigationController?.pushViewController(newTaskViewController, animated: true)
     }
@@ -174,7 +175,7 @@ extension TasksListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject,
+        guard let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? UserTask,
               let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.reuseID, for: indexPath) as? TaskTableViewCell else { return UITableViewCell() }
         cell.configure(with: task)
         return cell
@@ -199,10 +200,10 @@ extension TasksListViewController: UITableViewDelegate {
 extension TasksListViewController: UIContextMenuInteractionDelegate {
     func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
             guard let indexPath = tableView.indexPathForRow(at: location),
-                  let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? TaskObject else { return nil }
+                  let task = viewModel?.sections[indexPath.section].items[indexPath.row] as? UserTask else { return nil }
 
             let editAction = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
-                self.editTask()
+                self.editTask(task: task)
             }
             let shareAction = UIAction(title: "Share", image: UIImage(systemName: "square.and.arrow.up")) { _ in
                 print("Share task")

@@ -10,6 +10,7 @@ import Foundation
 protocol TableViewItemsProtocol {
     var id: Int { get }
     var toDo: String { get set }
+    var toDoDescription: String? { get set }
     var isCompleted: Bool { get set }
     var userId: Int { get }
     var date: Date? { get }

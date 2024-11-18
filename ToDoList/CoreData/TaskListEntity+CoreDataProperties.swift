@@ -20,6 +20,7 @@ extension TaskListEntity {
     @NSManaged public var isCompleted: Bool
     @NSManaged public var toDo: String
     @NSManaged public var toDoDescription: String?
+    @NSManaged public var date: Date?
     @NSManaged public var userId: Int64
 
 }

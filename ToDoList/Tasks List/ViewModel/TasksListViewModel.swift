@@ -13,8 +13,8 @@ protocol TasksListViewModelProtocol {
     
     func loadData()
     func setupSection()
-    func getTasks() -> [TaskObject]
-    func delete(_ task: TaskObject)
+    func getTasks() -> [UserTask]
+    func delete(_ task: UserTask)
 }
 
 final class TasksListViewModel: TasksListViewModelProtocol {
@@ -23,9 +23,7 @@ final class TasksListViewModel: TasksListViewModelProtocol {
     var showError: ((String) -> Void)?
     var sections: [TableViewSection] = [] {
         didSet {
-            DispatchQueue.main.async {
-                self.reloadData?()
-            }
+            self.reloadData?()
         }
     }
     
@@ -41,43 +39,34 @@ final class TasksListViewModel: TasksListViewModelProtocol {
         sections = [TableViewSection(items: allTasks)]
     }
     
-    func getTasks() -> [TaskObject] {
+    func getTasks() -> [UserTask] {
         return TaskPersistant.fetchAll()
     }
     
-    func delete(_ task: TaskObject) {
+    func delete(_ task: UserTask) {
         TaskPersistant.delete(task)
     }
 }
 
-// MARK: - Private
+// MARK: - Private Methods
 private extension TasksListViewModel {
     func handleResult(_ result: Result<[TaskObject], Error>) {
         switch result {
         case .success(let tasks):
             saveToPersistant(tasks)
         case .failure(let error):
-            DispatchQueue.main.async {
-                self.showError?(error.localizedDescription)
-            }
+            self.showError?(error.localizedDescription)
         }
     }
     
-
-    
-//    func convertToCell(_ tasks: [TaskObject]) {
-//        if sections.isEmpty {
-//            let firstSection = TableViewSection(items: tasks)
-//            sections = [firstSection]
-//        } else {
-//            sections[0].items += tasks
-//        }
-//        
-//    }
-    
     func saveToPersistant(_ tasks: [TaskObject]) {
         for task in tasks {
-            TaskPersistant.save(task)
+            let userTask = UserTask(toDoDescription: task.toDoDescription,
+                                    id: task.id,
+                                    toDo: task.toDo,
+                                    isCompleted: task.isCompleted,
+                                    userId: task.userId)
+            TaskPersistant.save(userTask)
         }
     }
 }
