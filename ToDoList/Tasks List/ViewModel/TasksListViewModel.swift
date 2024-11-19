@@ -13,7 +13,8 @@ protocol TasksListViewModelProtocol {
     
     func loadData()
     func setupSection()
-    func getTasks() -> [UserTask]
+    func getTasks()
+    func fetchTasks() -> [UserTask]
     func delete(_ task: UserTask)
 }
 
@@ -27,6 +28,11 @@ final class TasksListViewModel: TasksListViewModelProtocol {
         }
     }
     
+    // MARK: - Life Cycle
+    init() {
+        getTasks()
+    }
+    
     // MARK: - Public Methods
     func loadData() {
         ApiManager.getTasks() { [weak self] result in
@@ -35,12 +41,29 @@ final class TasksListViewModel: TasksListViewModelProtocol {
     }
     
     func setupSection() {
-        let allTasks = getTasks()
+        let allTasks = fetchTasks()
         sections = [TableViewSection(items: allTasks)]
     }
     
-    func getTasks() -> [UserTask] {
+    func fetchTasks() -> [UserTask] {
         return TaskPersistant.fetchAll()
+    }
+    
+    func getTasks() {
+        let tasks = TaskPersistant.fetchAll()
+        sections = []
+        
+        let groupedObjects = tasks.reduce(into: [Date: [UserTask]]()) { result, task in
+            let date = Calendar.current.startOfDay(for: task.date ?? Date())
+            result[date, default: []].append(task)
+        }
+        
+        let keys = groupedObjects.keys
+        keys.forEach { key in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yy"
+            sections.append(TableViewSection(items: groupedObjects[key] ?? []))
+        }
     }
     
     func delete(_ task: UserTask) {

@@ -12,34 +12,40 @@ final class TaskPersistant {
     private static let context = AppDelegate.persistentContainer.viewContext
     
     static func save(_ task: UserTask) {
-        if let entity = getEntity(for: task) {
-            entity.id = Int64(task.id)
-            entity.toDo = task.toDo
-            entity.isCompleted = task.isCompleted
-            entity.userId = Int64(task.userId)
-            entity.toDoDescription = task.toDoDescription ?? task.toDo
-            entity.date = task.date ?? Date()
+        print("Saving task with id: \(task.id), type: \(type(of: task.id))")
+        let entity: TaskListEntity
+        if let existingEntity = getEntity(for: task) {
+            entity = existingEntity
+            print("Updating existing entity with id: \(task.id)")
         } else {
-            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else { return }
-            let newEntity = TaskListEntity(entity: description, insertInto: context)
-            newEntity.id = Int64(task.id)
-            newEntity.toDo = task.toDo
-            newEntity.isCompleted = task.isCompleted
-            newEntity.userId = Int64(task.userId)
-            newEntity.toDoDescription = task.toDoDescription ?? task.toDo
-            newEntity.date = task.date ?? Date()
+            guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else {
+                print("Failed to create entity description")
+                return
+            }
+            entity = TaskListEntity(entity: description, insertInto: context)
+            print("Creating new entity with id: \(task.id)")
         }
         
-        print("Task details:")
-        print("id: \(task.id), toDo: \(task.toDo), isCompleted: \(task.isCompleted), userId: \(task.userId), description: \(task.toDoDescription ?? task.toDo), date: \(task.date ?? Date())")
+        entity.id = Int64(task.id)
+        entity.toDo = task.toDo
+        entity.isCompleted = task.isCompleted
+        entity.userId = Int64(task.userId)
+        entity.toDoDescription = task.toDoDescription ?? task.toDo
+        entity.date = task.date ?? Date()
         
         saveContext()
+        NotificationCenter.default.post(name: .tasksUpdated, object: nil)
     }
     
     static func delete(_ task: UserTask) {
-        guard let entity = getEntity(for: task) else { return }
+        guard let entity = getEntity(for: task) else {
+            print("No entity found for id: \(task.id)")
+            return
+        }
         context.delete(entity)
+        print("Entity deleted: \(entity)")
         saveContext()
+        NotificationCenter.default.post(name: .tasksUpdated, object: nil)
     }
     
     static func fetchAll() -> [UserTask] {
@@ -69,11 +75,12 @@ final class TaskPersistant {
     
     private static func getEntity(for task: UserTask) -> TaskListEntity? {
         let request = TaskListEntity.fetchRequest()
-        let predicate = NSPredicate(format: "id == %d", task.id)
+        let predicate = NSPredicate(format: "id == %d", Int64(task.id))
         request.predicate = predicate
         
         do {
             let objects = try context.fetch(request)
+            print("Fetched objects count: \(objects.count) for id: \(task.id)")
             return objects.first
         } catch let error {
             debugPrint("Fetch notes error: \(error)")
@@ -84,8 +91,9 @@ final class TaskPersistant {
     private static func saveContext() {
         do {
             try context.save()
+            print("Context saved successfully.")
         } catch let error {
-            debugPrint("Save note error: \(error)")
+            print("Save context error: \(error)")
         }
     }
 }

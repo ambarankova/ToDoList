@@ -14,7 +14,7 @@ protocol TaskViewModelProtocol {
     func save(with toDo: String, and toDoDescription: String, date: Date)
 }
 
-final class NewTaskViewModel: TaskViewModelProtocol {
+final class TaskViewModel: TaskViewModelProtocol {
     // MARK: - Properties
     var task: UserTask?
     
@@ -27,7 +27,11 @@ final class NewTaskViewModel: TaskViewModelProtocol {
     func save(with toDo: String, and toDoDescription: String, date: Date) {
         let date = Date()
         
-        let task = UserTask(toDoDescription: toDoDescription, id: 1, toDo: toDo, isCompleted: false, userId: 1, date: date)
+        let allTasks = TaskPersistant.fetchAll()
+        let countOfTasks = allTasks.count
+        let uniqueId = countOfTasks + 2
+        
+        let task = UserTask(toDoDescription: toDoDescription, id: Int(uniqueId), toDo: toDo, isCompleted: false, userId: Int(uniqueId), date: date)
         TaskPersistant.save(task)
     }
     

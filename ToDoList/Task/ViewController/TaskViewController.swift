@@ -47,15 +47,6 @@ final class TaskViewController: UIViewController, UITextViewDelegate {
         configure()
         setupUI()
     }
-    
-    // MARK: - Public Methods
-//    func set(task: UserTask) {
-//        titleTextView.text = task.toDo
-//        descriptionTextView.text = task.toDoDescription
-//        
-//        dateFormatter.dateFormat = "dd/MM/yy"
-//        dateLabel.text = dateFormatter.string(from: task.date ?? Date())
-//    }
 }
 
 // MARK: - Private Methods
