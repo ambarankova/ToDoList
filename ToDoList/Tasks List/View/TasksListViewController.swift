@@ -51,7 +51,7 @@ final class TasksListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tasksCount()
+        setupBars()
     }
     
     deinit {
@@ -85,7 +85,6 @@ private extension TasksListViewController {
                                                 action: #selector(hideKeyboard))
         view.addGestureRecognizer(recognizer)
         
-        tasksCount()
         setupConstraints()
         setupBars()
         setupContextMenu()
@@ -128,6 +127,8 @@ private extension TasksListViewController {
     }
     
     func setupBars() {
+        tasksCount()
+        
         let countLabel = UIBarButtonItem(title: "\(countOfTasks) tasks".localized,
                                          image: nil,
                                          target: self,
@@ -169,7 +170,10 @@ private extension TasksListViewController {
     }
     
     @objc private func refreshTasks() {
-        //        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.viewModel?.getTasks()
+            self.tableView.reloadData()
+        }
     }
     
     @objc func addTask() {
@@ -230,6 +234,7 @@ extension TasksListViewController: UIContextMenuInteractionDelegate {
         }
         let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash")) { _ in
             self.viewModel?.delete(task)
+            self.setupBars()
         }
         
         let menu = UIMenu(title: "", children: [editAction, shareAction, deleteAction])
