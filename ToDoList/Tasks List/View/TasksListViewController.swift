@@ -85,6 +85,8 @@ private extension TasksListViewController {
                                                 action: #selector(hideKeyboard))
         view.addGestureRecognizer(recognizer)
         
+        searchBar.delegate = self
+        
         setupConstraints()
         setupBars()
     }
@@ -109,6 +111,7 @@ private extension TasksListViewController {
     
     func setupSearchBar(_ searchBar: UISearchBar) {
         searchBar.barTintColor = .clear
+        searchBar.searchTextField.textColor = .softWhite
         
         let textField = searchBar.searchTextField
         textField.backgroundColor = UIColor.stroke.withAlphaComponent(0.5)
@@ -273,25 +276,22 @@ extension TasksListViewController: UITableViewDelegate {
 
 // MARK: - UISearchBarDelegate
 extension TasksListViewController: UISearchBarDelegate {
-    //    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    //        guard let text = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-    //
-    //        viewModel.loadData(searchText: text)
-    //        searchBar.searchTextField.resignFirstResponder()
-    //    }
-    //
-    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    //        if searchText.isEmpty {
-    //            viewModel.loadData(searchText: nil)
-    //        }
-    //
-    //        let recognizer = UITapGestureRecognizer(target: self,
-    //                                                action: #selector(hideKeyboard))
-    //        view.addGestureRecognizer(recognizer)
-    //    }
-    //
-    //    @objc private func hideKeyboard() {
-    //        searchBar.searchTextField.resignFirstResponder()
-    //    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("Search button clicked with text: \(searchBar.text ?? "")")
+        guard let text = searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !text.isEmpty else { return }
+        
+        viewModel?.loadData(searchText: text)
+        table.reloadData()
+        searchBar.resignFirstResponder()
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Text did change: \(searchText)")
+        if searchText.isEmpty {
+            viewModel?.loadData(searchText: nil)
+            table.reloadData()
+        }
+    }
 }
+
 

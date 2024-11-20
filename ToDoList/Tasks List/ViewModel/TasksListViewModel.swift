@@ -10,6 +10,7 @@ import Foundation
 protocol TasksListViewModelProtocol {
     var sections: [TableViewSection] { get set }
     var reloadData: (() -> Void)? { get set }
+    var filteredTasks: [UserTask] { get set }
     
     func loadData()
     func setupSection()
@@ -17,6 +18,7 @@ protocol TasksListViewModelProtocol {
     func fetchTasks() -> [UserTask]
     func delete(_ task: UserTask)
     func done(_ task: UserTask)
+    func loadData(searchText: String?)
 }
 
 final class TasksListViewModel: TasksListViewModelProtocol {
@@ -28,6 +30,7 @@ final class TasksListViewModel: TasksListViewModelProtocol {
             self.reloadData?()
         }
     }
+    var filteredTasks: [UserTask] = []
     
     // MARK: - Life Cycle
     init() {
@@ -77,6 +80,19 @@ final class TasksListViewModel: TasksListViewModelProtocol {
         else { return }
         taskToBeDone.isCompleted.toggle()
         TaskPersistant.save(taskToBeDone)
+    }
+    
+    func loadData(searchText: String?) {
+        sections = []
+        let allTasks = fetchTasks()
+        if let text = searchText?.lowercased(), !text.isEmpty {
+            filteredTasks = allTasks.filter {
+                $0.toDo.lowercased().contains(text) || ($0.toDoDescription?.lowercased().contains(text) ?? false)
+            }
+        } else {
+            filteredTasks = allTasks
+        }
+        sections.append(TableViewSection(items: filteredTasks))
     }
 }
 
