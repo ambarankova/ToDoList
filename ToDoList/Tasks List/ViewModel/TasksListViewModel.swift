@@ -16,6 +16,7 @@ protocol TasksListViewModelProtocol {
     func getTasks()
     func fetchTasks() -> [UserTask]
     func delete(_ task: UserTask)
+    func done(_ task: UserTask)
 }
 
 final class TasksListViewModel: TasksListViewModelProtocol {
@@ -58,16 +59,24 @@ final class TasksListViewModel: TasksListViewModelProtocol {
             result[date, default: []].append(task)
         }
         
-        let keys = groupedObjects.keys
-        keys.forEach { key in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yy"
-            sections.append(TableViewSection(items: groupedObjects[key] ?? []))
+        let sortedKeys = groupedObjects.keys.sorted()
+        
+        sortedKeys.forEach { key in
+            let dateTasks = groupedObjects[key]?.sorted(by: { $0.id < $1.id }) ?? []
+            sections.append(TableViewSection(items: dateTasks))
         }
     }
     
     func delete(_ task: UserTask) {
         TaskPersistant.delete(task)
+    }
+    
+    func done(_ task: UserTask) {
+        let allTasks = fetchTasks()
+        guard var taskToBeDone = (allTasks.first { $0.id == task.id })
+        else { return }
+        taskToBeDone.isCompleted.toggle()
+        TaskPersistant.save(taskToBeDone)
     }
 }
 

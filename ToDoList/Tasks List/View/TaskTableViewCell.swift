@@ -126,7 +126,7 @@ final class TaskTableViewCell: UITableViewCell {
 private extension TaskTableViewCell {
     func setupUI() {
         selectionStyle = .none
-        backgroundColor = .clear
+        backgroundColor = .softBlack
 
         contentView.addSubview(boxView)
         boxView.addSubviews([titleLabel, descriptionLabel, dateLabel, checkboxImageView, separatorView])
