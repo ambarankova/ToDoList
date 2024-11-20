@@ -131,7 +131,7 @@ private extension TasksListViewController {
     func setupBars() {
         tasksCount()
         
-        let countLabel = UIBarButtonItem(title: "\(countOfTasks) tasks".localized,
+        let countLabel = UIBarButtonItem(title: "\(countOfTasks)" +  "tasks".localized,
                                          image: nil,
                                          target: self,
                                          action: nil)
@@ -243,7 +243,9 @@ extension TasksListViewController: UITableViewDelegate {
             self.removeDimmedBackground()
         }
         
-        let doneAction = UIAction(title: "Done/Undone".localized, image: UIImage(systemName: "checkmark")) { _ in
+        let doneText = task.isCompleted ? "Undone".localized : "Done".localized
+        
+        let doneAction = UIAction(title: doneText, image: UIImage(systemName: "checkmark")) { _ in
             self.viewModel?.done(task)
             self.removeDimmedBackground()
         }
@@ -268,7 +270,7 @@ extension TasksListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willEndContextMenuInteraction configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionAnimating?) {
         
-            animator?.addCompletion {
+        animator?.addCompletion {
             self.removeDimmedBackground()
         }
     }

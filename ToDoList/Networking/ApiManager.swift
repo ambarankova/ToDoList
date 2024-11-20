@@ -8,8 +8,10 @@
 import Foundation
 
 final class ApiManager {
+    // MARK: - Properties
     private static let baseUrl = "https://dummyjson.com/todos"
     
+    // MARK: - Public Methods
     static func getTasks(completion: @escaping (Result<[TaskObject], Error>) -> ()) {
         guard let url = URL(string: baseUrl) else { return }
         
@@ -19,6 +21,7 @@ final class ApiManager {
         session.resume()
     }
     
+    // MARK: - Private Methods
     private static func handleRespond(data: Data?, error: Error?, completion: @escaping (Result<[TaskObject], Error>) -> ()) {
         
         if let error = error {

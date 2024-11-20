@@ -21,6 +21,7 @@
 		CD7E83AD2CEA442A00ADFB67 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83AC2CEA442A00ADFB67 /* TaskViewController.swift */; };
 		CD7E83AF2CEA444000ADFB67 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD7E83AE2CEA444000ADFB67 /* TaskViewModel.swift */; };
 		CD9F7C122CED0F620032E351 /* Notification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD9F7C112CED0F620032E351 /* Notification+Ex.swift */; };
+		CDCE60FD2CEE5E0000B71ADC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDCE60FB2CEE5E0000B71ADC /* Localizable.strings */; };
 		CDFD00082CE660680015BCC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD00072CE660680015BCC1 /* AppDelegate.swift */; };
 		CDFD000C2CE660680015BCC1 /* TasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */; };
 		CDFD00112CE6606A0015BCC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDFD00102CE6606A0015BCC1 /* Assets.xcassets */; };
@@ -47,6 +48,8 @@
 		CD7E83AC2CEA442A00ADFB67 /* TaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		CD7E83AE2CEA444000ADFB67 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		CD9F7C112CED0F620032E351 /* Notification+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ex.swift"; sourceTree = "<group>"; };
+		CDCE60FA2CEE5D9500B71ADC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CDCE60FE2CEE5E0600B71ADC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDFD00042CE660680015BCC1 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDFD00072CE660680015BCC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDFD000B2CE660680015BCC1 /* TasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +169,7 @@
 				CDFD00102CE6606A0015BCC1 /* Assets.xcassets */,
 				CDFD00152CE6606A0015BCC1 /* Info.plist */,
 				CDFD00122CE6606A0015BCC1 /* LaunchScreen.storyboard */,
+				CDCE60FB2CEE5E0000B71ADC /* Localizable.strings */,
 			);
 			path = Resourses;
 			sourceTree = "<group>";
@@ -249,6 +253,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = CDFDFFFB2CE660680015BCC1;
 			minimizedProjectReferenceProxies = 1;
@@ -271,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CDFD00142CE6606A0015BCC1 /* LaunchScreen.storyboard in Resources */,
+				CDCE60FD2CEE5E0000B71ADC /* Localizable.strings in Resources */,
 				CDFD00112CE6606A0015BCC1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,10 +314,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		CDCE60FB2CEE5E0000B71ADC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CDCE60FE2CEE5E0600B71ADC /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		CDFD00122CE6606A0015BCC1 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CDFD00132CE6606A0015BCC1 /* Base */,
+				CDCE60FA2CEE5D9500B71ADC /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -378,6 +393,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -441,6 +457,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

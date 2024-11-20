@@ -127,10 +127,10 @@ private extension TaskTableViewCell {
     func setupUI() {
         selectionStyle = .none
         backgroundColor = .softBlack
-
+        
         contentView.addSubview(boxView)
         boxView.addSubviews([titleLabel, descriptionLabel, dateLabel, checkboxImageView, separatorView])
-
+        
         setupConstraints()
     }
     

@@ -9,21 +9,19 @@ import Foundation
 import CoreData
 
 final class TaskPersistant {
+    // MARK: - Properties
     private static let context = AppDelegate.persistentContainer.viewContext
     
+    // MARK: - Public Methods
     static func save(_ task: UserTask) {
-        print("Saving task with id: \(task.id), type: \(type(of: task.id))")
         let entity: TaskListEntity
         if let existingEntity = getEntity(for: task) {
             entity = existingEntity
-            print("Updating existing entity with id: \(task.id)")
         } else {
             guard let description = NSEntityDescription.entity(forEntityName: "TaskListEntity", in: context) else {
-                print("Failed to create entity description")
                 return
             }
             entity = TaskListEntity(entity: description, insertInto: context)
-            print("Creating new entity with id: \(task.id)")
         }
         
         entity.id = Int64(task.id)
@@ -38,12 +36,8 @@ final class TaskPersistant {
     }
     
     static func delete(_ task: UserTask) {
-        guard let entity = getEntity(for: task) else {
-            print("No entity found for id: \(task.id)")
-            return
-        }
+        guard let entity = getEntity(for: task) else { return }
         context.delete(entity)
-        print("Entity deleted: \(entity)")
         saveContext()
         NotificationCenter.default.post(name: .tasksUpdated, object: nil)
     }
@@ -80,7 +74,6 @@ final class TaskPersistant {
         
         do {
             let objects = try context.fetch(request)
-            print("Fetched objects count: \(objects.count) for id: \(task.id)")
             return objects.first
         } catch let error {
             debugPrint("Fetch notes error: \(error)")
@@ -91,7 +84,6 @@ final class TaskPersistant {
     private static func saveContext() {
         do {
             try context.save()
-            print("Context saved successfully.")
         } catch let error {
             print("Save context error: \(error)")
         }

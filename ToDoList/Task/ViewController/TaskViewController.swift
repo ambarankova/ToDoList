@@ -38,7 +38,7 @@ final class TaskViewController: UIViewController, UITextViewDelegate {
     // MARK: - Properties
     var viewModel: TaskViewModelProtocol?
     let dateFormatter = DateFormatter()
-
+    
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,8 +59,8 @@ private extension TaskViewController {
             dateFormatter.dateFormat = "dd/MM/yy"
             dateLabel.text = dateFormatter.string(from: task.date ?? Date())
         } else {
-            titleTextView.text = "To Do"
-            descriptionTextView.text = "To do"
+            titleTextView.text = "To Do".localized
+            descriptionTextView.text = "To do".localized
             
             dateFormatter.dateFormat = "dd/MM/yy"
             dateLabel.text = dateFormatter.string(from: Date())
@@ -103,9 +103,9 @@ private extension TaskViewController {
                                           target: self,
                                           action: #selector(deleteAction))
         trashButton.tintColor = .brightYellow
-        let saveButton = UIBarButtonItem(title: "Save",
-                                             image: nil,
-                                             target: self,
+        let saveButton = UIBarButtonItem(title: "Save".localized,
+                                         image: nil,
+                                         target: self,
                                          action: #selector(saveAction))
         let spacing = UIBarButtonItem(systemItem: .flexibleSpace)
         
