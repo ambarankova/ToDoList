@@ -24,7 +24,7 @@ final class TasksListViewController: UIViewController {
         return title
     }()
     
-    private lazy var table: UITableView = {
+    lazy var table: UITableView = {
         let table = UITableView()
         table.backgroundColor = .softBlack
         return table
